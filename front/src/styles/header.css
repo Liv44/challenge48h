@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.header{
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.header-right{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-right .login img{
+   padding: 10px 50px 10px 30px;
+}
+.h1-header{
+    color: #000;
+    padding: 20px 100px 20px 20px;
+}
+a{
+    text-decoration: none;
+    color: #000;
+    font-size: 20px;
+    font-weight: 600;
+}
+.active{
+    padding-right: 100px;
+}
+a:hover{
+    color: blue;
+}
+#search-header{
+    width: 190px;
+    height: 30px;
+    border: none;
+    outline: 0;
+    border-bottom: 2px solid #000;
+    padding: 0 10px;
+    margin-right: 30px;
+}
+/* réduire la taille du texte h1 qaund la taille de l'écran atteint 470px */
+@media screen and (max-width: 470px){
+    h1{
+        font-size: 20px;
+    }
+}
+@media screen and (max-width: 442px){
+    h1{
+        font-size: 15px;
+    }
+}
