@@ -1,10 +1,28 @@
 import '../styles/home.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from './Header.js';
 import Footer from './Footer.js';
 
 
 const App = () => {
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const requestOptions = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      };
+      const response = await fetch(`http://localhost:4000/article/all`, requestOptions)
+        .then((res) => res.json())
+        .then((data) => {
+          setArticles(data);
+          return data
+        });
+      console.log(response);
+    }
+    fetchData();
+  }, [])
   return (
     <div>
       <Header />
@@ -27,11 +45,17 @@ const App = () => {
           </form>
         </div>
         <div class="home-left">
-          <div class="home-left-block">
-            <img src="https://www.cdiscount.com/pdt2/2/9/8/1/700x700/mp47165298/rw/paire-basket-baskets-chaussures-sneakers-lidl-edit.jpg" alt="" />
-            <h1>Nom du produit</h1>
-            <p>description</p>
-          </div>
+          {articles.map((article) => {
+            return <div class="home-left-block">
+              <img src="https://www.cdiscount.com/pdt2/2/9/8/1/700x700/mp47165298/rw/paire-basket-baskets-chaussures-sneakers-lidl-edit.jpg" alt="" />
+              <h1>{article.name}</h1>
+              <p>{article.description}</p>
+              <p>{article.price}€</p>
+            </div>
+          })
+
+          }
+
         </div>
       </div>
       <Footer />
