@@ -1,3 +1,4 @@
+import React from 'react';
 import '../styles/admin.css';
 import Header from './Header';
 
