@@ -46,8 +46,16 @@ const App = () => {
         </div>
         <div class="home-left">
           {articles.map((article) => {
+            const urls = [
+              "https://www.cdiscount.com/pdt2/2/9/8/1/700x700/mp47165298/rw/paire-basket-baskets-chaussures-sneakers-lidl-edit.jpg",
+              "https://viacomit.net/wp-content/uploads/2020/10/lidl-collection-sneakers-textile-13.jpg",
+              "https://creapills.com/wp-content/uploads/2020/07/lidl-vetements-home-1-9.jpg",
+              "https://images.vestiairecollective.com/cdn-cgi/image/q=80,f=auto,/produit/24640989-1_4.jpg",
+              "https://creapills.com/wp-content/uploads/2020/07/lidl-vetements-home-1-4.jpg"
+            ]
+            const urlImg = urls[Math.floor(Math.random() * urls.length)];
             return <div class="home-left-block">
-              <img src="https://www.cdiscount.com/pdt2/2/9/8/1/700x700/mp47165298/rw/paire-basket-baskets-chaussures-sneakers-lidl-edit.jpg" alt="" />
+              <img src={urlImg} alt="" />
               <h1>{article.name}</h1>
               <p>{article.description}</p>
               <p>{article.price}€</p>
