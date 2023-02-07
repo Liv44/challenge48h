@@ -22,9 +22,9 @@ const execute = async (query) => {
     }
 };
 
-execute(createTablesQuery).then(result => {
-    if (result) {
-        console.log('Tables created');
-    }
-});
+// execute(createTablesQuery).then(result => {
+//     if (result) {
+//         console.log('Tables created');
+//     }
+// });
 export default pool;
