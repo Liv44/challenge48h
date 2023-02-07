@@ -21,7 +21,7 @@ router.get('/:id', async (req, res, next) => {
 // Get article by shopID
 router.get('/shop/:id', async (req, res, next) => {
     const { id } = req.params;
-    const response = await client.query(`SELECT * FROM "Article" WHERE shopID = $1`, [id])
+    const response = await client.query(`SELECT * FROM "Article" WHERE shopid = $1`, [id])
     res.json(response.rows);
 });
 
@@ -29,11 +29,10 @@ router.get('/shop/:id', async (req, res, next) => {
 // Create article
 router.post('/new', async (req, res, next) => {
     const { name, price, description, urlimg, shopID, type } = req.body
-    
-    console.log(name, price, description, urlimg, shopID, type)
-    
-    //FIXME Bug with urlimg 
-    const text = `INSERT INTO "Article" (id, name, price, description, urlimg, shopID, type) VALUES($1, $2, $3, $4, $5, $6, $7)`;
+
+    // TODO : verify is shop Id is assigned to an existing shop. If not throw an error.
+
+    const text = `INSERT INTO "Article" (id, name, price, description, urlimg, shopid, type) VALUES($1, $2, $3, $4, $5, $6, $7)`;
 
     const values = [uuid(), name, price, description, urlimg, shopID, type];
     await client.query(text, values, (err) => {
@@ -61,7 +60,7 @@ router.delete('/:id', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
     const { id } = req.params;
     const { name, price, description, urlimg, shopID, type } = req.body
-    const response = await client.query(`UPDATE "Article" SET name = $1, price = $2, description = $3, urlimg = $4, shopID = $5, type = $6 WHERE id = $7`, [name, price, description, urlimg, shopID, type, id])
+    const response = await client.query(`UPDATE "Article" SET name = $1, price = $2, description = $3, urlimg = $4, shopid = $5, type = $6 WHERE id = $7`, [name, price, description, urlimg, shopID, type, id])
     res.json({ message: "updated" })
 })
 

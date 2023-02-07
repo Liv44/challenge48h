@@ -24,7 +24,7 @@ router.post('/', async (req, res, next) => {
 // delete shop
 router.delete('/:id', async (req, res, next) => {
     const { id } = req.params;
-    
+
     const text = `DELETE FROM "Shop" WHERE id = $1`;
     const values = [id];
     await client.query(text, values, (err) => {
@@ -41,7 +41,7 @@ router.delete('/:id', async (req, res, next) => {
 router.post('/order', async (req, res, next) => {
     const { userID, shopID, articleID, quantity } = req.body
 
-    const text = `INSERT INTO "Order"(id, userID, shopID, articleID, quantity) VALUES($1, $2, $3, $4, $5)`;
+    const text = `INSERT INTO "Order"(id, userid, shopid, articleid, quantity) VALUES($1, $2, $3, $4, $5)`;
 
     const values = [uuid(), userID, shopID, articleID, quantity];
     await client.query(text, values, (err) => {
